@@ -1,5 +1,5 @@
 ﻿using EmployeeWageComputation;
 
 Console.WriteLine("Welcome to Employee Wage Computation");
-EmployeeAttendence obj = new EmployeeAttendence();
-obj.CheckPresentOrNot();
+EmployeeWage obj = new EmployeeWage();
+obj.DailyWage();
