@@ -18,28 +18,25 @@ namespace EmployeeWageComputation
             int dailywage = 0;
             int empcheck = Generate.Next(0, 3);
 
-            if (empcheck == 0)
+            switch (empcheck)
             {
-                Console.WriteLine("Employee is Present\nFull Time Employee");
-                emphrs = 8;
-            }
-            else if (empcheck == 1)
-            {
-                Console.WriteLine("Employee is Present\nPart Time Employee");
-                emphrs = 4;
-            }
-            else
-            {
-                Console.WriteLine("Employee is Absent");
-                emphrs = 0;
+                case 0:
+                    Console.WriteLine("Employee is Present\nFull Time Employee");
+                    emphrs = FULL_DAY_HOUR;
+                    break;
+
+                case 1:
+                    Console.WriteLine("Employee is Present\nPart Time Employee");
+                    emphrs = PART_TIME_HOUUR;
+                    break;
+
+                default:
+                    Console.WriteLine("Employee is Absent");
+                    emphrs = 0;
+                    break;
             }
             dailywage = emphrs * WAGE_PER_HOUR;
             Console.WriteLine("Employee Daily Wage : " + dailywage);
         }
-            
-    
-          
-
-        
-    }
+    }    
 }
