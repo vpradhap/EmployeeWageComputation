@@ -15,7 +15,7 @@ namespace EmployeeWageComputation
         int TOTAL_WORKING_HOURS = 100;
 
         Random Generate = new Random();
-        public void employeeWage()
+        public void EmployeeComputation()
         {
             int emphrs = 0;
             int monthlywage = 0;
@@ -37,22 +37,20 @@ namespace EmployeeWageComputation
                 switch (empcheck)
                 {
                     case 0:
-                        Console.WriteLine("Employee is Present\nFull Time Employee");
+                        Console.WriteLine("\nEmployee is Present\tFull Time Employee");
                         emphrs = FULL_DAY_HOUR;
                         break;
-
                     case 1:
-                        Console.WriteLine("Employee is Present\nPart Time Employee");
+                        Console.WriteLine("\nEmployee is Present\tPart Time Employee");
                         emphrs = PART_TIME_HOUR;
                         break;
-
                     default:
-                        Console.WriteLine("Employee is Absent");
+                        Console.WriteLine("\n\tEmployee is Absent");
                         emphrs = 0;
                         break;
                 }
                 totalemphrs += emphrs;
-                Console.WriteLine("Day:"+day + "\tEmphrs:" + totalemphrs);
+                Console.WriteLine("\n\tDay:"+day + "\tEmphrs: " + totalemphrs+" hrs");
                 day++;
             }
             monthlywage = totalemphrs * WAGE_PER_HOUR;
