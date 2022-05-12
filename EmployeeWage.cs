@@ -8,23 +8,21 @@ namespace EmployeeWageComputation
 {
     public class EmployeeWage
     {
-        int WAGE_PER_HOUR = 20;
         int FULL_DAY_HOUR = 8;
         int PART_TIME_HOUR = 4;
-        int TOTAL_WORKING_DAYS_PER_MONTH = 20;
-        int TOTAL_WORKING_HOURS = 100;
 
         Random Generate = new Random();
-        public void EmployeeComputation()
+        public void EmployeeComputation(string company,int wage_per_hour,int workingdayspermonth,int workinghrspermonth)
         {
             int emphrs = 0;
             int monthlywage = 0;
             int totalemphrs = 0;
-            int day =0;
+            int day =1;
             int empcheck = 0;
-            while  (totalemphrs < TOTAL_WORKING_HOURS && day < TOTAL_WORKING_DAYS_PER_MONTH )
+            Console.WriteLine("\n\tEmployee Wage Computation For The Company : \""+company+"\"");
+            while  (totalemphrs < workinghrspermonth && day <= workingdayspermonth )
             {
-                if (totalemphrs >= (TOTAL_WORKING_HOURS - PART_TIME_HOUR))
+                if (totalemphrs >= (workinghrspermonth - PART_TIME_HOUR))
                 {
                     empcheck = 1;
                 }
@@ -45,7 +43,7 @@ namespace EmployeeWageComputation
                         emphrs = PART_TIME_HOUR;
                         break;
                     default:
-                        Console.WriteLine("\n\tEmployee is Absent");
+                        Console.WriteLine("\nEmployee is Absent");
                         emphrs = 0;
                         break;
                 }
@@ -53,8 +51,8 @@ namespace EmployeeWageComputation
                 Console.WriteLine("\n\tDay:"+day + "\tEmphrs: " + totalemphrs+" hrs");
                 day++;
             }
-            monthlywage = totalemphrs * WAGE_PER_HOUR;
-            Console.WriteLine("\nTotal Monthly Wage : " +monthlywage);
+            monthlywage = totalemphrs * wage_per_hour;
+            Console.WriteLine("\n\t--------------< Total Monthly Wage : " +monthlywage+" >----------------");
         }
     }    
 }
