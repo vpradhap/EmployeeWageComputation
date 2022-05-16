@@ -6,22 +6,35 @@ using System.Threading.Tasks;
 
 namespace EmployeeWageComputation
 {
-    public class EmployeeWage
+    public class EmployeeWageBuilderObject    
     {
         int FULL_DAY_HOUR = 8;
         int PART_TIME_HOUR = 4;
 
-        Random Generate = new Random();
-        public void EmployeeComputation(string company,int wage_per_hour,int workingdayspermonth,int workinghrspermonth)
+        string company;
+        int wage_per_hour;
+        int workingdayspermonth;
+        int workinghrspermonth;
+        int monthlywage;
+        public EmployeeWageBuilderObject(string company, int wage_per_hour, int workingdayspermonth, int workinghrspermonth)
+        {
+            this.company = company;
+            this.wage_per_hour = wage_per_hour;
+            this.workingdayspermonth = workingdayspermonth;
+            this.workinghrspermonth = workinghrspermonth;
+        }    
+
+        public void EmployeeComputation()
         {
             int emphrs = 0;
-            int monthlywage = 0;
             int totalemphrs = 0;
             int day =1;
             int empcheck = 0;
             Console.WriteLine("\n\tEmployee Wage Computation For The Company : \""+company+"\"");
             while  (totalemphrs < workinghrspermonth && day <= workingdayspermonth )
             {
+                Random Generate = new Random();
+
                 if (totalemphrs >= (workinghrspermonth - PART_TIME_HOUR))
                 {
                     empcheck = 1;
@@ -52,7 +65,8 @@ namespace EmployeeWageComputation
                 day++;
             }
             monthlywage = totalemphrs * wage_per_hour;
-            Console.WriteLine("\n\t--------------< Total Monthly Wage : " +monthlywage+" >----------------");
+            Console.WriteLine("\n--------------< Total Monthly Wage For "+company+ " is : " +monthlywage+" >----------------");
         }
+
     }    
 }
