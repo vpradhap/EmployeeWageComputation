@@ -6,36 +6,42 @@ using System.Threading.Tasks;
 
 namespace EmployeeWageComputation
 {
-    public class EmployeeWageBuilderObject    
+    public class EmployeeWageBuilder   
     {
         int FULL_DAY_HOUR = 8;
         int PART_TIME_HOUR = 4;
 
-        string company;
-        int wage_per_hour;
-        int workingdayspermonth;
-        int workinghrspermonth;
-        int monthlywage;
-        public EmployeeWageBuilderObject(string company, int wage_per_hour, int workingdayspermonth, int workinghrspermonth)
+        private int noofcompany = 0;
+        private CompanyEmpWage[] companyarray;
+        public EmployeeWageBuilder()
         {
-            this.company = company;
-            this.wage_per_hour = wage_per_hour;
-            this.workingdayspermonth = workingdayspermonth;
-            this.workinghrspermonth = workinghrspermonth;
+            this.companyarray = new CompanyEmpWage[5]; 
         }    
-
+        public void AddCompany(string company, int wage_per_hour, int workingdayspermonth, int workinghrspermonth)
+        {
+            companyarray[this.noofcompany] = new CompanyEmpWage(company, wage_per_hour, workingdayspermonth, workinghrspermonth);
+            noofcompany++;    
+        }
         public void EmployeeComputation()
+        {
+            for (int i = 0; i < noofcompany; i++)
+            {
+                companyarray[i].TotalEmpWage(this.EmployeeComputation(this.companyarray[i]));
+                Console.WriteLine(this.companyarray[i].Output());
+            }
+        }
+        public int EmployeeComputation(CompanyEmpWage companyEmpWage)
         {
             int emphrs = 0;
             int totalemphrs = 0;
             int day =1;
             int empcheck = 0;
-            Console.WriteLine("\n\tEmployee Wage Computation For The Company : \""+company+"\"");
-            while  (totalemphrs < workinghrspermonth && day <= workingdayspermonth )
+            Console.WriteLine("\n\tEmployee Wage Computation For The Company : \""+companyEmpWage.company+"\"");
+            while  (totalemphrs < companyEmpWage.workinghrspermonth && day <= companyEmpWage.workingdayspermonth )
             {
                 Random Generate = new Random();
 
-                if (totalemphrs >= (workinghrspermonth - PART_TIME_HOUR))
+                if (totalemphrs >= (companyEmpWage.workinghrspermonth - PART_TIME_HOUR))
                 {
                     empcheck = 1;
                 }
@@ -64,9 +70,8 @@ namespace EmployeeWageComputation
                 Console.WriteLine("\n\tDay:"+day + "\tEmphrs: " + totalemphrs+" hrs");
                 day++;
             }
-            monthlywage = totalemphrs * wage_per_hour;
-            Console.WriteLine("\n--------------< Total Monthly Wage For "+company+ " is : " +monthlywage+" >----------------");
-        }
+            return totalemphrs * companyEmpWage.wage_per_hour;
 
+        }
     }    
 }

@@ -1,8 +1,8 @@
 ﻿using EmployeeWageComputation;
 
 Console.WriteLine("Welcome to Employee Wage Computation");
-EmployeeWageBuilderObject microsoft = new EmployeeWageBuilderObject("Microsoft",20,25,100);
-EmployeeWageBuilderObject tencent = new EmployeeWageBuilderObject("Tencent",30,20,120);
-microsoft.EmployeeComputation();
+EmployeeWageBuilder empwagebuilder = new EmployeeWageBuilder();
+empwagebuilder.AddCompany("Microsoft",20,30,100);
 Console.WriteLine("\n***************************************************************");
-tencent.EmployeeComputation();
+empwagebuilder.AddCompany("Tencent", 25, 20, 120);
+empwagebuilder.EmployeeComputation();
