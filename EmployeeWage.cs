@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeWageComputation
 {
-    public class EmployeeWageBuilder   
+    public class EmployeeWageBuilder : IEmployeeComputation
     {
         int FULL_DAY_HOUR = 8;
         int PART_TIME_HOUR = 4;
@@ -30,7 +30,7 @@ namespace EmployeeWageComputation
                 Console.WriteLine(this.companyarray[i].Output());
             }
         }
-        public int EmployeeComputation(CompanyEmpWage companyEmpWage)
+        private int EmployeeComputation(CompanyEmpWage companyEmpWage)
         {
             int emphrs = 0;
             int totalemphrs = 0;
@@ -71,7 +71,10 @@ namespace EmployeeWageComputation
                 day++;
             }
             return totalemphrs * companyEmpWage.wage_per_hour;
-
+        }
+        public int TotalEmpWage(string company)
+        {
+            return this.companyarray[noofcompany].monthlywage;
         }
     }    
 }

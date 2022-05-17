@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace EmployeeWageComputation
 {
+    public interface IEmployeeComputation
+    {
+        public void AddCompany(string company, int wage_per_hour, int workingdayspermonth, int workinghrspermonth);
+        public void EmployeeComputation();
+        public int TotalEmpWage(string company);
+    }
     public class CompanyEmpWage
     {
         public string company;
@@ -20,6 +26,7 @@ namespace EmployeeWageComputation
             this.wage_per_hour = wage_per_hour;
             this.workingdayspermonth = workingdayspermonth;
             this.workinghrspermonth = workinghrspermonth;
+            this.monthlywage = 0;
         }
         public void TotalEmpWage(int monthlywage)
         {
