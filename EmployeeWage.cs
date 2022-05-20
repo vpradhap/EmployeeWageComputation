@@ -11,20 +11,22 @@ namespace EmployeeWageComputation
     {
         int FULL_DAY_HOUR = 8;
         int PART_TIME_HOUR = 4;
-
-        private List<CompanyEmpWage> companyarray;
+        private List<CompanyEmpWage> companylist; 
+        private Dictionary<string, CompanyEmpWage> company;
         public EmployeeWageBuilder()
         {
-            this.companyarray = new List<CompanyEmpWage>(); 
+            this.companylist = new List<CompanyEmpWage>();
+            this.company = new Dictionary<string, CompanyEmpWage>(); 
         }    
         public void AddCompany(string company, int wage_per_hour, int workingdayspermonth, int workinghrspermonth)
         {
             CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, wage_per_hour, workingdayspermonth, workinghrspermonth);
-            this.companyarray.Add(companyEmpWage);    
+            this.companylist.Add(companyEmpWage);
+            this.company.Add(company,companyEmpWage);    
         }
         public void EmployeeComputation()
         {
-            foreach (CompanyEmpWage companyEmpWage in this.companyarray)
+            foreach (CompanyEmpWage companyEmpWage in this.companylist)
             {
                 companyEmpWage.TotalEmpWage(this.EmployeeComputation(companyEmpWage));
                 Console.WriteLine(companyEmpWage.Output());
@@ -73,14 +75,7 @@ namespace EmployeeWageComputation
         }
         public int TotalEmpWage(string company)
         {
-            foreach(var comp in companyarray)
-            {
-                if (comp.company == company)
-                {
-                    return comp.monthlywage;
-                }
-            }
-            return 0;
+            return this.company[company].monthlywage;
         }
     }    
 }
