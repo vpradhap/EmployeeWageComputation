@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace EmployeeWageComputation
 {
@@ -11,23 +12,22 @@ namespace EmployeeWageComputation
         int FULL_DAY_HOUR = 8;
         int PART_TIME_HOUR = 4;
 
-        private int noofcompany = 0;
-        private CompanyEmpWage[] companyarray;
+        private List<CompanyEmpWage> companyarray;
         public EmployeeWageBuilder()
         {
-            this.companyarray = new CompanyEmpWage[5]; 
+            this.companyarray = new List<CompanyEmpWage>(); 
         }    
         public void AddCompany(string company, int wage_per_hour, int workingdayspermonth, int workinghrspermonth)
         {
-            companyarray[this.noofcompany] = new CompanyEmpWage(company, wage_per_hour, workingdayspermonth, workinghrspermonth);
-            noofcompany++;    
+            CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, wage_per_hour, workingdayspermonth, workinghrspermonth);
+            this.companyarray.Add(companyEmpWage);    
         }
         public void EmployeeComputation()
         {
-            for (int i = 0; i < noofcompany; i++)
+            foreach (CompanyEmpWage companyEmpWage in this.companyarray)
             {
-                companyarray[i].TotalEmpWage(this.EmployeeComputation(this.companyarray[i]));
-                Console.WriteLine(this.companyarray[i].Output());
+                companyEmpWage.TotalEmpWage(this.EmployeeComputation(companyEmpWage));
+                Console.WriteLine(companyEmpWage.Output());
             }
         }
         private int EmployeeComputation(CompanyEmpWage companyEmpWage)
@@ -48,7 +48,6 @@ namespace EmployeeWageComputation
                 else
                 {
                     empcheck = Generate.Next(0, 3);
-
                 }
 
                 switch (empcheck)
@@ -74,7 +73,14 @@ namespace EmployeeWageComputation
         }
         public int TotalEmpWage(string company)
         {
-            return this.companyarray[noofcompany].monthlywage;
+            foreach(var comp in companyarray)
+            {
+                if (comp.company == company)
+                {
+                    return comp.monthlywage;
+                }
+            }
+            return 0;
         }
     }    
 }
