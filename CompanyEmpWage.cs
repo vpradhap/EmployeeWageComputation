@@ -34,7 +34,7 @@ namespace EmployeeWageComputation
         }
         public string Output()
         {
-            return "\n--------------< Total Monthly Wage For " + this.company + " is : " + this.monthlywage + " >----------------";
+            return "\nTotal Monthly Wage : " + this.monthlywage;
 
         }
     }
