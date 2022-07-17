@@ -1,1 +1,15 @@
 # EmployeeWageComputation
+UC1_Employee_Attendence<br>
+UC2_Employee_Daily_Wage<br>
+UC3_Part_time_Employee<br>
+UC4_Switch_Case<br>
+UC5_EmpWage_for_Month<br>
+UC6_Wage_till_totalworkinghour_days_is_reached<br>
+UC7_Using_Class_Methods<br>
+UC8_Empwage_Multiple_Companies<br>
+UC9_EmpWage_For_Each_Company<br>
+UC10_Manage_EmpWage_For_Each_Company<br>
+UC11_Using_Interface<br>
+UC12_Using_ArrayList<br>
+UC13_Using_Dictionary<br>
+UC14_Totalwage_queried_by_company
